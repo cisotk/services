@@ -773,7 +773,7 @@
           <div class="nav-right">
             <nav class="nav-links" id="desktopMenu">
               <a href="#services" data-i18n="navServices">Services</a>
-              <a href="https://cisotk.tawk.help/article/why-our-services" target="_blank" data-i18n="navWhy">Why us</a>
+              <a href="https://cisotk.tawk.help/article/why-our-services" target="_blank" data-why-link data-i18n="navWhy">Why us</a>
               <a href="https://calendly.com/ciso-toolkit/" target="_blank" data-i18n="navContact">Contact</a>
             </nav>
 
@@ -790,7 +790,7 @@
 
         <nav class="mobile-menu" id="mobileMenu">
           <a href="#services" data-i18n="navServices">Services</a>
-          <a href="https://cisotk.tawk.help/article/why-our-services" target="_blank" data-i18n="navWhy">Why us</a>
+          <a href="https://cisotk.tawk.help/article/why-our-services" target="_blank" data-why-link data-i18n="navWhy">Why us</a>
           <a href="https://calendly.com/ciso-toolkit/" target="_blank" data-i18n="navContact">Contact</a>
 
           <button
@@ -891,7 +891,7 @@
               </div>
             </div>
             <div class="card-bottom">
-              <a class="link" href="https://cisotk.tawk.help/category/services" target="_blank">
+              <a class="link" href="https://cisotk.tawk.help/category/services" data-cyber-link target="_blank">
                 <span data-i18n="cyberLink">Secure my environment</span>
                 <span>→</span>
               </a>
@@ -931,7 +931,7 @@
               </div>
             </div>
             <div class="card-bottom">
-              <a class="link" href="https://cisotk.tawk.help/category/services" target="_blank">
+              <a class="link" href="https://cisotk.tawk.help/category/services" data-infra-link target="_blank">
                 <span data-i18n="infraLink">Upgrade infrastructure</span>
                 <span>→</span>
               </a>
@@ -976,7 +976,7 @@
               </div>
             </div>
             <div class="card-bottom">
-              <a class="link" href="https://cisotk.tawk.help/category/services" target="_blank">
+              <a class="link" href="https://cisotk.tawk.help/category/services" data-auto-link target="_blank">
                 <span data-i18n="autoLink">Automate operations</span>
                 <span>→</span>
               </a>
@@ -1217,7 +1217,7 @@
       const elements = {
         brandTag: document.querySelector(".brand-text span"),
         navServices: document.querySelector('#desktopMenu a[href="#services"]'),
-        navWhy: document.querySelector('#desktopMenu a[href="https://cisotk.tawk.help/article/why-our-services"]'),
+        navWhy: document.querySelector('[data-why-link]'),
         navContact: document.querySelector('#desktopMenu a[href="https://calendly.com/ciso-toolkit/"]'),
         heroEyebrow: document.querySelector(".eyebrow"),
         heroTitle: document.querySelector(".hero h1"),
@@ -1239,6 +1239,10 @@
         ctaTitle: document.querySelector("#contact h2"),
         ctaText: document.querySelector("#contact p"),
         ctaBtn: document.querySelector("#contact .btn-primary"),
+        cyberLink: document.querySelector('[data-cyber-link]'),
+        infraLink: document.querySelector('[data-infra-link]'),
+        autoLink: document.querySelector('[data-auto-link]'),
+        whyLink: document.querySelector('[data-why-link]'),
         desktopNavLinks: document.querySelectorAll("#desktopMenu a[data-i18n]"),
         mobileNavLinks: document.querySelectorAll("#mobileMenu a[data-i18n]"),
         langFlag: document.getElementById("langFlag"),
@@ -1289,6 +1293,15 @@
         if (elements.langLabel) elements.langLabel.textContent = label;
         if (elements.langFlagMobile) elements.langFlagMobile.textContent = flag;
         if (elements.langLabelMobile) elements.langLabelMobile.textContent = label;
+
+        const cyberHref = lang === 'fr' ? 'https://cisotk.tawk.help/fr/article/cybers%C3%A9curit%C3%A9' : 'https://cisotk.tawk.help/article/cybersecurity';
+        const infraHref = lang === 'fr' ? 'https://cisotk.tawk.help/fr/article/infrastructure' : 'https://cisotk.tawk.help/article/infrastructure';
+        const autoHref = lang === 'fr' ? 'https://cisotk.tawk.help/fr/article/automatisation' : 'https://cisotk.tawk.help/article/automation';
+        const whyHref = lang === 'fr' ? 'https://cisotk.tawk.help/fr/article/pourquoi-nos-services' : 'https://cisotk.tawk.help/article/why-our-services';
+        if (elements.cyberLink) elements.cyberLink.href = cyberHref;
+        if (elements.infraLink) elements.infraLink.href = infraHref;
+        if (elements.autoLink) elements.autoLink.href = autoHref;
+        if (elements.whyLink) elements.whyLink.href = whyHref;
 
         localStorage.setItem("preferredLang", lang);
       }
