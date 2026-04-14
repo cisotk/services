@@ -1,1 +1,1334 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Services Overview</title>
+    <meta name="description" content="Modern IT services in cyber security, infrastructure, and automation." />
+    <style>
+      :root {
+        --bg: #f6f4ff;
+        --surface: rgba(255, 255, 255, 0.88);
+        --surface-strong: #ffffff;
+        --text: #111827;
+        --muted: #667085;
+        --line: rgba(111, 99, 231, 0.12);
+        --shadow: 0 18px 50px rgba(46, 35, 120, 0.1);
+        --shadow-hover: 0 28px 70px rgba(46, 35, 120, 0.16);
+        --accent: #6f63e7;
+        --accent-2: #8d7cff;
+        --accent-3: #b4aaff;
+        --deep: #17153b;
+        --radius-xl: 30px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --max: 1180px;
+      }
 
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--text);
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 0% 0%, rgba(111, 99, 231, 0.24), transparent 28%),
+          linear-gradient(180deg, #ffffff 0%, #f7f4ff 42%, #f3efff 100%);
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        width: min(100% - 32px, var(--max));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        backdrop-filter: blur(22px);
+        background: rgba(246, 244, 255, 0.76);
+        border-bottom: 1px solid rgba(111, 99, 231, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+        gap: 16px;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 10px 24px rgba(111, 99, 231, 0.22);
+        background: #fff;
+        flex: 0 0 auto;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .brand-text strong {
+        font-size: 1rem;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .brand-text span {
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 22px;
+        color: #4b5563;
+        font-size: 0.95rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        position: relative;
+        padding: 8px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+        border-radius: 999px;
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-toggle {
+        display: none;
+        width: 46px;
+        height: 46px;
+        border: 1px solid rgba(111, 99, 231, 0.14);
+        background: rgba(255, 255, 255, 0.72);
+        border-radius: 14px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(46, 35, 120, 0.06);
+      }
+
+      .nav-toggle span {
+        width: 18px;
+        height: 2px;
+        background: var(--deep);
+        border-radius: 999px;
+        position: relative;
+        display: block;
+      }
+
+      .nav-toggle span::before,
+      .nav-toggle span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 18px;
+        height: 2px;
+        background: var(--deep);
+        border-radius: 999px;
+      }
+
+      .nav-toggle span::before {
+        top: -6px;
+      }
+      .nav-toggle span::after {
+        top: 6px;
+      }
+
+      .mobile-menu {
+        display: block;
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-12px);
+        overflow: hidden;
+        pointer-events: none;
+        transition:
+          max-height 0.45s ease,
+          opacity 0.25s ease,
+          transform 0.45s ease;
+        will-change: max-height, opacity, transform;
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 14px 0;
+        border-top: 1px solid rgba(111, 99, 231, 0.08);
+        color: #374151;
+        font-weight: 600;
+      }
+
+      .hero {
+        padding: 56px 0 24px;
+      }
+
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 38px;
+        padding: 48px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.76)),
+          radial-gradient(circle at 15% 15%, rgba(111, 99, 231, 0.28), transparent 30%);
+        border: 1px solid rgba(111, 99, 231, 0.08);
+        box-shadow: var(--shadow);
+        isolation: isolate;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(
+          135deg,
+          rgba(111, 99, 231, 0.12),
+          rgba(141, 124, 255, 0.06),
+          rgba(255, 255, 255, 0)
+        );
+        z-index: -1;
+        filter: blur(16px);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: 999px;
+        background: rgba(111, 99, 231, 0.1);
+        color: var(--accent);
+        font-weight: 800;
+        font-size: 0.86rem;
+        margin-bottom: 18px;
+        letter-spacing: 0.02em;
+      }
+
+      h1 {
+        font-size: clamp(2.55rem, 5vw, 5.4rem);
+        line-height: 0.94;
+        letter-spacing: -0.07em;
+        max-width: 11ch;
+        margin-bottom: 18px;
+      }
+
+      .lead {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 60ch;
+        line-height: 1.75;
+        margin-bottom: 26px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 999px;
+        padding: 14px 20px;
+        font-weight: 800;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 16px 34px rgba(111, 99, 231, 0.28);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(111, 99, 231, 0.35);
+      }
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(111, 99, 231, 0.14);
+        color: var(--deep);
+      }
+
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(46, 35, 120, 0.08);
+      }
+
+      .hero-panel {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat {
+        position: relative;
+        overflow: hidden;
+        background: #ffffff;
+        border: 1px solid rgba(111, 99, 231, 0.1);
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.55rem;
+        letter-spacing: -0.04em;
+        margin-bottom: 6px;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .section {
+        padding: 28px 0 72px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.65rem, 2.5vw, 2.5rem);
+        letter-spacing: -0.05em;
+      }
+
+      .section-head p {
+        color: var(--muted);
+        max-width: 52ch;
+        line-height: 1.7;
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .card {
+        position: relative;
+        background: var(--surface-strong);
+        border: 1px solid rgba(111, 99, 231, 0.09);
+        border-radius: 32px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        min-height: 100%;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(111, 99, 231, 0.18);
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+      }
+
+      .card-top {
+        padding: 24px 24px 0;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.77rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #5347cf;
+        background: linear-gradient(135deg, rgba(111, 99, 231, 0.12), rgba(180, 170, 255, 0.14));
+        border: 1px solid rgba(111, 99, 231, 0.1);
+        border-radius: 999px;
+        padding: 8px 12px;
+        margin-bottom: 18px;
+      }
+
+      .icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 22px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        color: #fff;
+        box-shadow: 0 18px 34px rgba(111, 99, 231, 0.24);
+      }
+
+      .cyber .icon {
+        background: linear-gradient(135deg, #5b4ee6, #8b7dff);
+      }
+      .infra .icon {
+        background: linear-gradient(135deg, #6f63e7, #8f83ff);
+      }
+      .auto .icon {
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      }
+
+      .icon svg {
+        width: 32px;
+        height: 32px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .card h3 {
+        font-size: 1.45rem;
+        letter-spacing: -0.04em;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 0.98rem;
+      }
+
+      .features {
+        padding: 18px 24px 24px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: #374151;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .check {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+        border-radius: 999px;
+        background: rgba(111, 99, 231, 0.1);
+        color: var(--accent);
+        display: grid;
+        place-items: center;
+        font-size: 0.8rem;
+        margin-top: 2px;
+      }
+
+      .card-bottom {
+        padding: 0 24px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .link {
+        font-weight: 800;
+        color: #111827;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .link span {
+        color: var(--accent);
+        font-size: 1.1rem;
+        transition: transform 0.2s ease;
+      }
+
+      .card:hover .link span {
+        transform: translateX(4px);
+      }
+
+      .tag {
+        font-size: 0.83rem;
+        color: #4b5563;
+        background: #f8f7ff;
+        border: 1px solid rgba(111, 99, 231, 0.1);
+        padding: 8px 12px;
+        border-radius: 999px;
+      }
+
+      .trust {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .trust-box {
+        background: #ffffff;
+        border: 1px solid rgba(111, 99, 231, 0.08);
+        border-radius: 24px;
+        padding: 18px;
+        box-shadow: 0 10px 24px rgba(46, 35, 120, 0.05);
+      }
+
+      .trust-box strong {
+        display: block;
+        font-size: 1.15rem;
+        margin-bottom: 6px;
+        letter-spacing: -0.03em;
+      }
+
+      .trust-box span {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.5;
+      }
+
+      .cta-band {
+        margin-top: 10px;
+        border-radius: 34px;
+        padding: 34px;
+        background: linear-gradient(135deg, #2b2387 0%, #4f46e5 55%, #6f63e7 100%);
+        color: #fff;
+        box-shadow: 0 24px 70px rgba(79, 70, 229, 0.24);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-band::before,
+      .cta-band::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        filter: blur(2px);
+      }
+
+      .cta-band::before {
+        width: 240px;
+        height: 240px;
+        bottom: -120px;
+        left: -60px;
+      }
+
+      .cta-band::after {
+        width: 240px;
+        height: 240px;
+        bottom: -120px;
+        left: -60px;
+      }
+
+      .cta-band > * {
+        position: relative;
+        z-index: 1;
+      }
+      .cta-band p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-top: 8px;
+        max-width: 58ch;
+        line-height: 1.65;
+      }
+
+      .cta-band .btn-primary {
+        background: #fff;
+        color: #2b2387;
+        box-shadow: none;
+      }
+
+      .cta-band .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 26px rgba(255, 255, 255, 0.12);
+      }
+
+      footer {
+        padding: 28px 0 42px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.95rem;
+      }
+
+      .fade {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .fade.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .services,
+        .trust {
+          grid-template-columns: 1fr;
+        }
+        .hero-card {
+          padding: 28px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .mobile-menu.open {
+          display: block;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding-top: 28px;
+        }
+        .section {
+          padding-bottom: 54px;
+        }
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .cta-band {
+          padding: 24px;
+        }
+        .card-top,
+        .features,
+        .card-bottom {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        h1 {
+          max-width: 13ch;
+        }
+      }
+
+      .mobile-menu.open {
+        max-height: 220px;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .card .features .feature:nth-child(3) .check {
+        background: #6f63e7;
+        color: #f2f2f2;
+      }
+
+      .card .features .feature:nth-child(3) .feature-text {
+        color: #6f63e7;
+        font-weight: 300;
+        text-decoration: underline;
+        text-decoration-color: #6f63e7;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 4px;
+      }
+
+      .lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(111, 99, 231, 0.14);
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--deep);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(46, 35, 120, 0.06);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .lang-toggle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(46, 35, 120, 0.1);
+      }
+
+      .mobile-lang-toggle {
+        width: 100%;
+        justify-content: center;
+        margin-top: 12px;
+        padding: 14px 16px;
+      }
+
+      @media (max-width: 960px) {
+        .lang-toggle {
+          display: none;
+        }
+        .mobile-menu.open .mobile-lang-toggle {
+          display: inline-flex;
+        }
+      }
+
+      .legal-link {
+        color: #6f63e7;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-decoration-color: rgba(111, 99, 231, 0.85);
+        text-underline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="nav">
+          <a class="brand" href="#home">
+            <img src="https://i.postimg.cc/nV3m2qjS/Logo.png" alt="Company logo" />
+            <div class="brand-text">
+              <strong>CISOTK</strong>
+              <span>Cyber Security • Infrastructure • Automation</span>
+            </div>
+          </a>
+
+          <div class="nav-right">
+            <nav class="nav-links" id="desktopMenu">
+              <a href="#services" data-i18n="navServices">Services</a>
+              <a href="https://cisotk.tawk.help/article/why-our-services" target="_blank" data-i18n="navWhy">Why us</a>
+              <a href="https://calendly.com/ciso-toolkit/" target="_blank" data-i18n="navContact">Contact</a>
+            </nav>
+
+            <button class="lang-toggle" id="langToggle" aria-label="Changer de langue" type="button">
+              <span id="langFlag">🇺🇸</span>
+              <span id="langLabel">EN</span>
+            </button>
+          </div>
+
+          <button class="nav-toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+          </button>
+        </div>
+
+        <nav class="mobile-menu" id="mobileMenu">
+          <a href="#services" data-i18n="navServices">Services</a>
+          <a href="https://cisotk.tawk.help/article/why-our-services" target="_blank" data-i18n="navWhy">Why us</a>
+          <a href="https://calendly.com/ciso-toolkit/" target="_blank" data-i18n="navContact">Contact</a>
+
+          <button
+            class="lang-toggle mobile-lang-toggle"
+            id="langToggleMobile"
+            aria-label="Changer de langue"
+            type="button"
+          >
+            <span id="langFlagMobile">🇺🇸</span>
+            <span id="langLabelMobile">EN</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap" id="home">
+      <section class="hero">
+        <div class="hero-card fade">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">Premium IT services for modern businesses</div>
+              <h1>Secure, scale, and automate with confidence.</h1>
+              <p class="lead">
+                We help teams move faster with cyber security, reliable infrastructure, and smart automation — all
+                wrapped in a polished, modern service experience.
+              </p>
+              <div class="cta-row">
+                <a class="btn btn-primary" href="#services">Explore services</a>
+                <a class="btn btn-secondary" href="https://calendly.com/ciso-toolkit" target="_blank">
+                  Book a discovery call
+                </a>
+              </div>
+            </div>
+
+            <div class="hero-panel">
+              <div class="stat">
+                <strong>Protect</strong>
+                <span>Reduce risk with practical security built for real-world operations.</span>
+              </div>
+              <div class="stat">
+                <strong>Stabilize</strong>
+                <span>Build a foundation that performs under pressure and grows cleanly.</span>
+              </div>
+              <div class="stat">
+                <strong>Accelerate</strong>
+                <span>Automate repetitive work and improve delivery speed across teams.</span>
+              </div>
+              <div class="stat">
+                <strong>Scale</strong>
+                <span>Scale your IT services with a robust, modern infrastructure.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="section-head fade">
+          <div>
+            <h2 data-i18n="servicesTitle">Our services</h2>
+          </div>
+          <p>
+            Delivering cutting-edge cyber security, intelligent automation, and robust infrastructure solutions,
+            designed to safeguard, streamline, and empower your business.
+          </p>
+        </div>
+
+        <div class="services">
+          <article class="card cyber fade">
+            <div class="card-top">
+              <div class="chip" data-i18n="cyberChip">Protect your business</div>
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3l7 3v5c0 5-3.5 9.5-7 10-3.5-.5-7-5-7-10V6l7-3z"></path>
+                  <path d="M9.5 12l1.8 1.8L14.8 10"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="cyberTitle">Cyber Security</h3>
+              <p data-i18n="cyberDesc">
+                Strengthen your environment with clear, actionable protection that helps prevent disruption and builds
+                client trust.
+              </p>
+            </div>
+            <div class="features">
+              <div class="feature">
+                <span class="check">✓</span>
+                <span data-i18n="cyberFeature1">Threat detection and response.</span>
+              </div>
+              <div class="feature">
+                <span class="check">✓</span>
+                <span data-i18n="cyberFeature2">Hardening, access control, and monitoring.</span>
+              </div>
+              <div class="feature">
+                <span class="check">✓</span>
+                <span class="feature-text" data-i18n="cyberFeature3">
+                  Security posture improvements that are easy to explain.
+                </span>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <a class="link" href="https://cisotk.tawk.help/category/services" target="_blank">
+                <span data-i18n="cyberLink">Secure my environment</span>
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card infra fade">
+            <div class="card-top">
+              <div class="chip" data-i18n="infraChip">Build reliable foundations</div>
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 18h16"></path>
+                  <path d="M7 18V8h3v10"></path>
+                  <path d="M14 18V5h3v13"></path>
+                  <path d="M5 18V14h2v4"></path>
+                  <path d="M17 18v-7h2v7"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="infraTitle">Infrastructure</h3>
+              <p data-i18n="infraDesc">
+                Deploy infrastructure that feels effortless for users while staying reliable, maintainable, and ready
+                for growth.
+              </p>
+            </div>
+            <div class="features">
+              <div class="feature">
+                <span class="check">✓</span>
+                <span data-i18n="infraFeature1">Cloud and on-premise architecture.</span>
+              </div>
+              <div class="feature">
+                <span class="check">✓</span>
+                <span data-i18n="infraFeature2">High availability and performance tuning.</span>
+              </div>
+              <div class="feature">
+                <span class="check">✓</span>
+                <span class="feature-text" data-i18n="infraFeature3">Flexible systems built to scale smoothly.</span>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <a class="link" href="https://cisotk.tawk.help/category/services" target="_blank">
+                <span data-i18n="infraLink">Upgrade infrastructure</span>
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card auto fade">
+            <div class="card-top">
+              <div class="chip" data-i18n="autoChip">Remove manual work</div>
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2v4"></path>
+                  <path d="M12 18v4"></path>
+                  <path d="M4.9 4.9l2.8 2.8"></path>
+                  <path d="M16.3 16.3l2.8 2.8"></path>
+                  <path d="M2 12h4"></path>
+                  <path d="M18 12h4"></path>
+                  <circle cx="12" cy="12" r="4.5"></circle>
+                  <path d="M10.4 12h3.2"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="autoTitle">Automation</h3>
+              <p data-i18n="autoDesc">
+                Turn repetitive operations into smooth workflows so your team can focus on high-value work instead of
+                maintenance.
+              </p>
+            </div>
+            <div class="features">
+              <div class="feature">
+                <span class="check">✓</span>
+                <span data-i18n="autoFeature1">CI/CD and deployment workflows.</span>
+              </div>
+              <div class="feature">
+                <span class="check">✓</span>
+                <span data-i18n="autoFeature2">Operational tasks and repeatable processes.</span>
+              </div>
+              <div class="feature">
+                <span class="check">✓</span>
+                <span class="feature-text" data-i18n="autoFeature3">
+                  Less friction, more consistency, better speed.
+                </span>
+              </div>
+            </div>
+            <div class="card-bottom">
+              <a class="link" href="https://cisotk.tawk.help/category/services" target="_blank">
+                <span data-i18n="autoLink">Automate operations</span>
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="why" class="section">
+        <div class="section-head fade">
+          <div>
+            <h2 data-i18n="coreTitle">At our core</h2>
+          </div>
+          <p data-i18n="coreDesc">
+            Security, infrastructure, and automation built to protect, stabilize, and accelerate your business.
+          </p>
+        </div>
+
+        <div class="trust fade">
+          <div class="trust-box">
+            <strong data-i18n="coreBox1Title">Cost</strong>
+            <span data-i18n="coreBox1Text">
+              Lower operational spend by removing waste, duplicated tools, and unnecessary overhead.
+            </span>
+          </div>
+
+          <div class="trust-box">
+            <strong data-i18n="coreBox2Title">Delivery speed</strong>
+            <span data-i18n="coreBox2Text">
+              Move faster with streamlined workflows, fewer blockers, and automation that keeps teams flowing.
+            </span>
+          </div>
+
+          <div class="trust-box">
+            <strong data-i18n="coreBox3Title">TCO / maintainability</strong>
+            <span data-i18n="coreBox3Text">
+              Build systems that are easier to run, easier to support, and cheaper to own over time.
+            </span>
+          </div>
+
+          <div class="trust-box">
+            <strong data-i18n="coreBox4Title">Complexity</strong>
+            <span data-i18n="coreBox4Text">
+              Simplify the stack so teams can deliver with more clarity, fewer dependencies, and less friction.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <div id="contact" class="cta-band fade">
+        <div>
+          <h2 style="letter-spacing: -0.05em">Ready to move your business forward?</h2>
+          <p>
+            Build a stronger foundation with services designed to improve protection, streamline delivery, and reduce
+            long-term operational cost &amp; complexity.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="mailto:tickets@cisotk.p.tawk.email">Get in touch</a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-line">
+        ©
+        <span id="year"></span>
+        <a class="legal-link" href="https://ciso-toolkit.com/" target="_blank">CISOTK</a>
+        |
+        <a class="legal-link" href="https://ciso-toolkit.com/privacy" target="_blank">Legal</a>
+      </div>
+    </footer>
+
+    <!-- Tawk.to Chat Widget -->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/687756f7d3ad29190b1da6d3/1j092ne1k";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const translations = {
+        fr: {
+          brandTag: "Cybersécurité • Infrastructure • Automatisation",
+          navServices: "Services",
+          navWhy: "Pourquoi nous",
+          navContact: "Contact",
+          heroEyebrow: "Services informatiques premium pour les entreprises modernes",
+          heroTitle: "Sécuriser, structurer et automatiser avec confiance.",
+          heroLead:
+            "Nous aidons les équipes à aller plus vite grâce à la cybersécurité, une infrastructure fiable et une automatisation intelligente — le tout dans une expérience de service moderne et soignée.",
+          heroBtn1: "Découvrir les services",
+          heroBtn2: "Prendre un rendez-vous",
+          stat1Title: "Protéger",
+          stat1Text: "Réduire les risques avec une sécurité pratique pensée pour les opérations réelles.",
+          stat2Title: "Stabiliser",
+          stat2Text: "Construire une base solide qui résiste à la pression et évolue proprement.",
+          stat3Title: "Accélérer",
+          stat3Text: "Automatiser les tâches répétitives et améliorer la vitesse de livraison des équipes.",
+          stat4Title: "Déployer",
+          stat4Text: "Faire évoluer vos services IT avec une infrastructure robuste et moderne.",
+          servicesTitle: "Nos services",
+          coreTitle: "Au cœur de notre approche",
+          coreDesc:
+            "La sécurité, l’infrastructure et l’automatisation conçues pour protéger, stabiliser et accélérer votre entreprise.",
+
+          coreBox1Title: "Coût",
+          coreBox1Text:
+            "Réduisez les dépenses opérationnelles en éliminant le gaspillage, les outils redondants et les surcoûts inutiles.",
+          coreBox2Title: "Vitesse de livraison",
+          coreBox2Text:
+            "Avancez plus vite avec des workflows fluides, moins de blocages et une automatisation qui maintient le rythme des équipes.",
+          coreBox3Title: "TCO / maintenabilité",
+          coreBox3Text:
+            "Construisez des systèmes plus simples à exploiter, plus faciles à supporter et moins coûteux à posséder dans le temps.",
+          coreBox4Title: "Complexité",
+          coreBox4Text:
+            "Simplifiez la pile technique pour permettre aux équipes de livrer avec plus de clarté, moins de dépendances et moins de friction.",
+
+          servicesDesc:
+            "Nous proposons des solutions avancées de cybersécurité, d’automatisation intelligente et d’infrastructure robuste, conçues pour protéger, simplifier et faire grandir votre entreprise.",
+          cyberChip: "Protégez votre activité",
+          cyberTitle: "Cybersécurité",
+          cyberDesc:
+            "Renforcez votre environnement grâce à une protection claire et concrète, conçue pour limiter les interruptions et renforcer la confiance de vos clients.",
+          cyberFeature1: "Détection et réponse aux menaces.",
+          cyberFeature2: "Durcissement, contrôle des accès et surveillance.",
+          cyberFeature3: "Améliorations de la posture de sécurité faciles à expliquer.",
+          cyberLink: "Sécuriser mon environnement",
+
+          infraChip: "Construire des bases fiables",
+          infraTitle: "Infrastructure",
+          infraDesc:
+            "Déployez une infrastructure fluide pour les utilisateurs, tout en restant fiable, maintenable et prête à évoluer.",
+          infraFeature1: "Architecture cloud et sur site.",
+          infraFeature2: "Haute disponibilité et optimisation des performances.",
+          infraFeature3: "Des systèmes flexibles conçus pour évoluer sans friction.",
+          infraLink: "Améliorer l’infrastructure",
+
+          autoChip: "Réduire le travail manuel",
+          autoTitle: "Automatisation",
+          autoDesc:
+            "Transformez les opérations répétitives en workflows fluides afin que votre équipe se concentre sur les tâches à forte valeur ajoutée plutôt que sur la maintenance.",
+          autoFeature1: "Workflows CI/CD et déploiement.",
+          autoFeature2: "Tâches opérationnelles et processus répétables.",
+          autoFeature3: "Moins de friction, plus de cohérence, plus de rapidité.",
+          autoLink: "Automatiser les opérations",
+          ctaTitle: "Prêt à faire évoluer votre entreprise ?",
+          ctaText:
+            "Construisez une base plus solide avec des services conçus pour renforcer la protection, fluidifier la livraison et réduire les coûts et la complexité sur le long terme.",
+          ctaBtn: "Nous contacter",
+          langFlag: "🇺🇸",
+          langLabel: "EN",
+        },
+        en: {
+          brandTag: "Cyber Security • Infrastructure • Automation",
+          navServices: "Services",
+          navWhy: "Why us",
+          navContact: "Contact",
+          heroEyebrow: "Premium IT services for modern businesses",
+          heroTitle: "Secure, scale, and automate with confidence.",
+          heroLead:
+            "We help teams move faster with cyber security, reliable infrastructure, and smart automation — all wrapped in a polished, modern service experience.",
+          heroBtn1: "Explore services",
+          heroBtn2: "Book a discovery call",
+          stat1Title: "Protect",
+          stat1Text: "Reduce risk with practical security built for real-world operations.",
+          stat2Title: "Stabilize",
+          stat2Text: "Build a foundation that performs under pressure and grows cleanly.",
+          stat3Title: "Accelerate",
+          stat3Text: "Automate repetitive work and improve delivery speed across teams.",
+          stat4Title: "Deploy",
+          stat4Text: "Scale your IT services with a robust, modern infrastructure.",
+          servicesTitle: "Our services",
+          servicesDesc:
+            "Delivering cutting-edge cyber security, intelligent automation, and robust infrastructure solutions, designed to safeguard, streamline, and empower your business.",
+          cyberChip: "Protect your business",
+          cyberTitle: "Cyber Security",
+          cyberDesc:
+            "Strengthen your environment with clear, actionable protection that helps prevent disruption and builds client trust.",
+          cyberFeature1: "Threat detection and response.",
+          cyberFeature2: "Hardening, access control, and monitoring.",
+          cyberFeature3: "Security posture improvements that are easy to explain.",
+          cyberLink: "Secure my environment",
+
+          infraChip: "Build reliable foundations",
+          infraTitle: "Infrastructure",
+          infraDesc:
+            "Deploy infrastructure that feels effortless for users while staying reliable, maintainable, and ready for growth.",
+          infraFeature1: "Cloud and on-premise architecture.",
+          infraFeature2: "High availability and performance tuning.",
+          infraFeature3: "Flexible systems built to scale smoothly.",
+          infraLink: "Upgrade infrastructure",
+
+          autoChip: "Remove manual work",
+          autoTitle: "Automation",
+          autoDesc:
+            "Turn repetitive operations into smooth workflows so your team can focus on high-value work instead of maintenance.",
+          autoFeature1: "CI/CD and deployment workflows.",
+          autoFeature2: "Operational tasks and repeatable processes.",
+          autoFeature3: "Less friction, more consistency, better speed.",
+          autoLink: "Automate operations",
+          coreTitle: "At our core",
+          coreDesc:
+            "Security, infrastructure, and automation built to protect, stabilize, and accelerate your business.",
+
+          coreBox1Title: "Cost",
+          coreBox1Text: "Lower operational spend by removing waste, duplicated tools, and unnecessary overhead.",
+          coreBox2Title: "Delivery speed",
+          coreBox2Text:
+            "Move faster with streamlined workflows, fewer blockers, and automation that keeps teams flowing.",
+          coreBox3Title: "TCO / maintainability",
+          coreBox3Text: "Build systems that are easier to run, easier to support, and cheaper to own over time.",
+          coreBox4Title: "Complexity",
+          coreBox4Text:
+            "Simplify the stack so teams can deliver with more clarity, fewer dependencies, and less friction.",
+
+          ctaTitle: "Ready to move your business forward?",
+          ctaText:
+            "Build a stronger foundation with services designed to improve protection, streamline delivery, and reduce long-term operational cost and complexity.",
+          ctaBtn: "Get in touch",
+          langFlag: "🇫🇷",
+          langLabel: "FR",
+        },
+      };
+
+      const langToggle = document.getElementById("langToggle");
+      const langToggleMobile = document.getElementById("langToggleMobile");
+
+      const elements = {
+        brandTag: document.querySelector(".brand-text span"),
+        navServices: document.querySelector('#desktopMenu a[href="#services"]'),
+        navWhy: document.querySelector('#desktopMenu a[href="https://cisotk.tawk.help/article/why-our-services"]'),
+        navContact: document.querySelector('#desktopMenu a[href="https://calendly.com/ciso-toolkit/"]'),
+        heroEyebrow: document.querySelector(".eyebrow"),
+        heroTitle: document.querySelector(".hero h1"),
+        heroLead: document.querySelector(".hero .lead"),
+        heroBtn1: document.querySelector(".cta-row .btn-primary"),
+        heroBtn2: document.querySelector(".cta-row .btn-secondary"),
+        stat1Title: document.querySelector(".hero-panel .stat:nth-child(1) strong"),
+        stat1Text: document.querySelector(".hero-panel .stat:nth-child(1) span"),
+        stat2Title: document.querySelector(".hero-panel .stat:nth-child(2) strong"),
+        stat2Text: document.querySelector(".hero-panel .stat:nth-child(2) span"),
+        stat3Title: document.querySelector(".hero-panel .stat:nth-child(3) strong"),
+        stat3Text: document.querySelector(".hero-panel .stat:nth-child(3) span"),
+        stat4Title: document.querySelector(".hero-panel .stat:nth-child(4) strong"),
+        stat4Text: document.querySelector(".hero-panel .stat:nth-child(4) span"),
+        servicesTitle: document.querySelector("#services .section-head h2"),
+        coreTitle: document.querySelector("#why .section-head h2"),
+        coreDesc: document.querySelector("#why .section-head p"),
+        servicesDesc: document.querySelector("#services .section-head p"),
+        ctaTitle: document.querySelector("#contact h2"),
+        ctaText: document.querySelector("#contact p"),
+        ctaBtn: document.querySelector("#contact .btn-primary"),
+        desktopNavLinks: document.querySelectorAll("#desktopMenu a[data-i18n]"),
+        mobileNavLinks: document.querySelectorAll("#mobileMenu a[data-i18n]"),
+        langFlag: document.getElementById("langFlag"),
+        langLabel: document.getElementById("langLabel"),
+        langFlagMobile: document.getElementById("langFlagMobile"),
+        langLabelMobile: document.getElementById("langLabelMobile"),
+      };
+
+      let currentLang = "fr";
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+
+        const t = translations[lang];
+        elements.brandTag.textContent = t.brandTag;
+        elements.heroEyebrow.textContent = t.heroEyebrow;
+        elements.heroTitle.textContent = t.heroTitle;
+        elements.heroLead.textContent = t.heroLead;
+        elements.heroBtn1.textContent = t.heroBtn1;
+        elements.heroBtn2.textContent = t.heroBtn2;
+        elements.stat1Title.textContent = t.stat1Title;
+        elements.stat1Text.textContent = t.stat1Text;
+        elements.stat2Title.textContent = t.stat2Title;
+        elements.stat2Text.textContent = t.stat2Text;
+        elements.stat3Title.textContent = t.stat3Title;
+        elements.stat3Text.textContent = t.stat3Text;
+        elements.stat4Title.textContent = t.stat4Title;
+        elements.stat4Text.textContent = t.stat4Text;
+        elements.servicesTitle.textContent = t.servicesTitle;
+        elements.servicesDesc.textContent = t.servicesDesc;
+        elements.coreTitle.textContent = t.coreTitle;
+        elements.coreDesc.textContent = t.coreDesc;
+        elements.ctaTitle.textContent = t.ctaTitle;
+        elements.ctaText.textContent = t.ctaText;
+        elements.ctaBtn.textContent = t.ctaBtn;
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.dataset.i18n;
+          if (t[key]) el.textContent = t[key];
+        });
+
+        const showingFrench = lang === "fr";
+        const flag = showingFrench ? "🇺🇸" : "🇫🇷";
+        const label = showingFrench ? "EN" : "FR";
+
+        if (elements.langFlag) elements.langFlag.textContent = flag;
+        if (elements.langLabel) elements.langLabel.textContent = label;
+        if (elements.langFlagMobile) elements.langFlagMobile.textContent = flag;
+        if (elements.langLabelMobile) elements.langLabelMobile.textContent = label;
+
+        localStorage.setItem("preferredLang", lang);
+      }
+
+      function toggleLanguage() {
+        setLanguage(currentLang === "fr" ? "en" : "fr");
+      }
+
+      if (langToggle) langToggle.addEventListener("click", toggleLanguage);
+      if (langToggleMobile) langToggleMobile.addEventListener("click", toggleLanguage);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document.querySelectorAll(".fade").forEach((el) => observer.observe(el));
+
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+          const open = mobileMenu.classList.toggle("open");
+          menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("open");
+            menuBtn.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      setLanguage(localStorage.getItem("preferredLang") || "fr");
+    </script>
+  </body>
+</html>
