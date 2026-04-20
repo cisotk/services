@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT Services Overview</title>
     <meta name="description" content="Modern IT services in cyber security, infrastructure, and automation." />
+    <link rel="stylesheet" href="https://embed.typeform.com/next/css/popup.css" />
     <style>
       :root {
         --bg: #f6f4ff;
@@ -756,6 +757,11 @@
         text-decoration-color: rgba(111, 99, 231, 0.85);
         text-underline-offset: 3px;
       }
+
+      .btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(111, 99, 231, 0.25); /* Matches your accent color */
+      }
     </style>
   </head>
   <body>
@@ -818,7 +824,7 @@
                 wrapped in a polished, modern service experience.
               </p>
               <div class="cta-row">
-                <a class="btn btn-primary" href="#services">Explore services</a>
+                <a class="btn btn-primary" href="#" id="openAssessment">Free assessment</a>
                 <a class="btn btn-secondary" href="https://calendly.com/ciso-toolkit" target="_blank">
                   Book a discovery call
                 </a>
@@ -1076,7 +1082,7 @@
           heroTitle: "Sécuriser, structurer et automatiser avec confiance.",
           heroLead:
             "Nous aidons les équipes à aller plus vite grâce à la cybersécurité, une infrastructure fiable et une automatisation intelligente — le tout dans une expérience de service moderne et soignée.",
-          heroBtn1: "Découvrir les services",
+          heroBtn1: "Évaluation gratuite",
           heroBtn2: "Prendre un rendez-vous",
           stat1Title: "Protéger",
           stat1Text: "Réduire les risques avec une sécurité pratique pensée pour les opérations réelles.",
@@ -1148,7 +1154,7 @@
           heroTitle: "Secure, scale, and automate with confidence.",
           heroLead:
             "We help teams move faster with cyber security, reliable infrastructure, and smart automation — all wrapped in a polished, modern service experience.",
-          heroBtn1: "Explore services",
+          heroBtn1: "Free assessment",
           heroBtn2: "Book a discovery call",
           stat1Title: "Protect",
           stat1Text: "Reduce risk with practical security built for real-world operations.",
@@ -1307,7 +1313,10 @@
       }
 
       function toggleLanguage() {
-        setLanguage(currentLang === "fr" ? "en" : "fr");
+        setLanguage(currentLang === 'fr' ? 'en' : 'fr');
+        if (window.updateAssessmentPopup) {
+          window.updateAssessmentPopup();
+        }
       }
 
       if (langToggle) langToggle.addEventListener("click", toggleLanguage);
@@ -1342,6 +1351,45 @@
       }
 
       setLanguage(localStorage.getItem("preferredLang") || "fr");
+    </script>    
+    <script src="https://embed.typeform.com/next/embed.js"></script>
+    <script>
+      let assessmentPopup = null;
+      const btn = document.getElementById('openAssessment');  // Keep original reference
+
+      function initAssessmentPopup() {
+        if (!btn || !window.tf) return;
+
+        const lang = (typeof currentLang !== 'undefined' && currentLang) ? 
+                    currentLang : 
+                    (document.documentElement.lang === 'fr' ? 'fr' : 'en');
+        
+        const formId = lang === 'fr' ? 'kCDoyvUT' : 'Y5NSWWU4';
+
+        if (assessmentPopup) {
+          assessmentPopup.close();
+        }
+
+        assessmentPopup = window.tf.createPopup(formId);
+        btn.removeEventListener('click', handleAssessmentClick);
+        btn.addEventListener('click', handleAssessmentClick);
+      }
+
+      function handleAssessmentClick(e) {
+        e.preventDefault();
+        if (assessmentPopup) {
+          assessmentPopup.open();
+        }
+      }
+      
+      if (window.tf) {
+        initAssessmentPopup();
+      } else {
+        window.addEventListener('tfLoaded', initAssessmentPopup);
+      }
+      window.updateAssessmentPopup = function() {
+        initAssessmentPopup();
+      };
     </script>
   </body>
 </html>
